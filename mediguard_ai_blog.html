@@ -127,21 +127,25 @@ Final Structured Report
     <li>Robust Error Handling &amp; Logging</li>
   </ol>
 
-<<h2>Example Output – Full Patient Analysis</h2>
+<h2>Example Output – Full Patient Analysis</h2>
 
-<p>Here’s a real run of MediGuard AI on a synthetic high-risk patient (Synthea dataset). The agent correctly flags identity misuse, normal billing, and blocks discharge due to pending labs + ongoing fraud investigation.</p>
+<p>Here's a real run of MediGuard AI on a synthetic high-risk patient (Synthea dataset). The agent correctly flags identity misuse, normal billing, and blocks discharge due to pending labs + ongoing fraud investigation.</p>
 
 <!-- Screenshot 1: Terminal/Console Output -->
 <div style="text-align: center; margin: 40px 0; background: #0d1117; padding: 20px; border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 255, 136, 0.2);">
-  <img src="./mediguard1.png" alt="MediGuard output 2" style="max-width:100%; border-radius:12px; box-shadow:0 4px 20px rgba(255,0,102,0.4);">
+  <img src="./mediguard1.png" 
+       alt="MediGuard output 1" 
+       style="max-width:100%; border: 3px solid #00ff88; border-radius:12px; box-shadow:0 4px 20px rgba(255,0,102,0.4);">
   <p style="color: #00ff88; margin-top: 12px; font-family: monospace;">
     <strong>Live terminal run</strong> – All 3 agents executed in sequence
   </p>
 </div>
 
-<!-- Optional: Second screenshot zoomed on key flags -->
+<!-- Screenshot 2: Zoomed on Key Flags -->
 <div style="text-align: center; margin: 40px 0;">
-  <img src="./mediguard2.png" alt="MediGuard output 1" style="max-width:100%; border-radius:12px; box-shadow:0 4px 20px rgba(0,255,136,0.4);">
+  <img src="./mediguard2.png" 
+       alt="MediGuard output 2" 
+       style="max-width:100%; border-radius:12px; box-shadow:0 4px 20px rgba(0,255,136,0.4);">
   <p style="color: #ff3366;"><em>Identity agent correctly flags duplicate info + suspicious diagnosis-procedure pair</em></p>
 </div>
 
@@ -150,14 +154,11 @@ Final Structured Report
   <summary style="color: #00ff88; cursor: pointer; font-weight: bold;">Click to expand raw JSON result</summary>
   <pre style="color: #8b949e; background: transparent; border: none; margin-top: 12px; overflow-x: auto;">
 {
-  "patient_id": "0033d3f8-87c1-8f3b-1a2f-9d41d443a135",
+  "patient_id": "uuid",
   "identity": {
     "fraud_risk_score": 45,
     "identity_misuse_flag": true,
-    "reasons": [
-      "Duplicate patient information across multiple claims",
-      "Suspicious diagnosis-procedure combination detected"
-    ]
+    "reasons": ["Duplicate patient info", "Suspicious diagnosis"]
   },
   "billing": {
     "billing_risk_score": 15,
@@ -166,9 +167,11 @@ Final Structured Report
   },
   "discharge": {
     "discharge_ready": false,
-    "blockers": ["Pending blood lab results", "Active fraud investigation"],
+    "blockers": ["Pending blood lab", "Fraud investigation"],
     "delay_hours": 36
-  }
+  },
+  "raw": {},
+  "final": {}
 }</pre>
 </details>
 
