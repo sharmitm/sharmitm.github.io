@@ -127,13 +127,41 @@ Final Structured Report
     <li>Robust Error Handling &amp; Logging</li>
   </ol>
 
-  <h2>Example Output</h2>
-  <pre>{
-  "patient_id": "uuid",
+<<h2>Example Output – Full Patient Analysis</h2>
+
+<p>Here’s a real run of MediGuard AI on a synthetic high-risk patient (Synthea dataset). The agent correctly flags identity misuse, normal billing, and blocks discharge due to pending labs + ongoing fraud investigation.</p>
+
+<!-- Screenshot 1: Terminal/Console Output -->
+<div style="text-align: center; margin: 40px 0; background: #0d1117; padding: 20px; border-radius: 16px; box-shadow: 0 8px 32px rgba(0, 255, 136, 0.2);">
+  <img src="./mediguard1.png" 
+       alt="MediGuard AI complete JSON output in terminal" 
+       style="max-width: 100%; border: 3px solid #00ff88; border-radius: 12px;">
+  <p style="color: #00ff88; margin-top: 12px; font-family: monospace;">
+    <strong>Live terminal run</strong> – All 3 agents executed in sequence
+  </p>
+</div>
+
+<!-- Optional: Second screenshot zoomed on key flags -->
+<div style="text-align: center; margin: 40px 0;">
+  <img src="./mediguard2.png" 
+       alt="Close-up: Fraud risk 45 + Identity misuse detected" 
+       style="max-width: 90%; border: 2px solid #ff0066; border-radius: 12px; box-shadow: 0 4px 20px rgba(255,0,102,0.3);">
+  <p style="color: #ff3366;"><em>Identity agent correctly flags duplicate info + suspicious diagnosis-procedure pair</em></p>
+</div>
+
+<!-- Clean formatted JSON (for screen readers + beauty) -->
+<details style="margin: 30px 0; background: #161b22; padding: 16px; border-radius: 12px; border-left: 5px solid #00ff88;">
+  <summary style="color: #00ff88; cursor: pointer; font-weight: bold;">Click to expand raw JSON result</summary>
+  <pre style="color: #8b949e; background: transparent; border: none; margin-top: 12px; overflow-x: auto;">
+{
+  "patient_id": "0033d3f8-87c1-8f3b-1a2f-9d41d443a135",
   "identity": {
     "fraud_risk_score": 45,
     "identity_misuse_flag": true,
-    "reasons": ["Duplicate patient info", "Suspicious diagnosis"]
+    "reasons": [
+      "Duplicate patient information across multiple claims",
+      "Suspicious diagnosis-procedure combination detected"
+    ]
   },
   "billing": {
     "billing_risk_score": 15,
@@ -142,12 +170,15 @@ Final Structured Report
   },
   "discharge": {
     "discharge_ready": false,
-    "blockers": ["Pending blood lab", "Fraud investigation"],
+    "blockers": ["Pending blood lab results", "Active fraud investigation"],
     "delay_hours": 36
-  },
-  "raw": {},
-  "final": {}
+  }
 }</pre>
+</details>
+
+<p style="text-align: center; color: #888; font-size: 0.9em;">
+  Built with <strong>Google Gemini 2.0 Flash</strong> + <strong>Google ADK</strong> → 100% deterministic JSON output
+</p>
 
   <h2>Use Cases</h2>
   <ul>
@@ -169,6 +200,4 @@ Final Structured Report
   <p>MediGuard AI automates a multi-step healthcare fraud investigation process that typically requires several human reviewers. By combining structured datasets, deterministic tools, and multi-agent Gemini reasoning, the system delivers fast, consistent, and scalable fraud detection and discharge support.</p>
 
  </article>
-
-
 </body></html>
